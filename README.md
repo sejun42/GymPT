@@ -38,6 +38,7 @@ GymPT는 다음과 같은 주요 기능을 제공합니다:
       SQLALCHEMY_DATABASE_URI=sqlite:///data.sqlite
       OPENAI_API_KEY=your_openai_api_key
       ```
+    - OPENAI_API_KEY는 각자 발급받은 키로 설정하세요.
 
 5. **데이터베이스 초기화 및 마이그레이션**
     ```bash
