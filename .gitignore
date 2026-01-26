@@ -1,0 +1,3 @@
+static/videos/*
+!static/videos/3DexerciseVIdeo/
+!static/videos/3DexerciseVIdeo/**
