@@ -1,3 +1,8 @@
 static/videos/*
 !static/videos/3DexerciseVIdeo/
 !static/videos/3DexerciseVIdeo/**
+.env
+data.sqlite
+__pycache__/
+*.pyc
+.DS_Store
