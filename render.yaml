@@ -2,6 +2,13 @@ services:
   - type: web
     name: gympt
     env: python
-    pythonVersion: 3.11.9
-    buildCommand: apt-get update && apt-get install -y libgl1 libglib2.0-0 && pip install -r requirements.txt
+    pythonVersion: 3.10.14
+    buildCommand: pip install -r requirements.txt
+    aptConfig:
+      packages:
+        - libgl1
+        - libglib2.0-0
+        - chromium
+        - chromium-driver
+        - fonts-liberation
     startCommand: gunicorn app:app

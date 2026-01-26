@@ -13,7 +13,9 @@ import tempfile
 from werkzeug.utils import secure_filename
 from flask import send_file
 import pytz
+import shutil
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 from PIL import Image
 import base64
 
@@ -531,9 +533,16 @@ def get_website_screenshot(url):
     options.add_argument('--headless')
     options.add_argument('--disable-gpu')
     options.add_argument('--no-sandbox')
-    driver_path = os.path.join(basedir, 'drivers', 'chromedriver')
-    options.binary_location = driver_path
-    driver = webdriver.Chrome(options=options)
+    options.add_argument('--disable-dev-shm-usage')
+
+    chrome_bin = os.environ.get('CHROME_BIN') or shutil.which('chromium') or shutil.which('chromium-browser')
+    chromedriver_path = os.environ.get('CHROMEDRIVER_PATH') or shutil.which('chromedriver')
+
+    if chrome_bin:
+        options.binary_location = chrome_bin
+
+    service = Service(chromedriver_path) if chromedriver_path else Service()
+    driver = webdriver.Chrome(service=service, options=options)
     driver.get(url)
     screenshot = driver.get_screenshot_as_png()
     driver.quit()
